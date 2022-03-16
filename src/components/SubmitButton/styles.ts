@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const Container = styled.button`
+export const Container = styled.button.attrs({
+    type: 'submit'
+})`
     background:${({ theme }) => theme.color.primary} ;
     border-radius: 4px;
     border: 0;
@@ -13,7 +15,7 @@ export const Container = styled.button`
 
 
         svg {
-            color:${({ theme }) => theme.color.secondary2} ;
+            color:${({ theme }) => theme.color.tertiary} ;
         }
 
     &:hover{

@@ -1,11 +1,11 @@
-export default {
+const theme = {
     title: 'light',
     color: {
         primary: '#3b3c40',
         primary2: '#7b878c',
         secondary: '#FFFF',
         secondary2: '#f2cb05',
-        tertiary: '#F5f5f5',
+        tertiary: '#CCCC',
 
         white: '#fff',
         black: '#000',
@@ -16,3 +16,5 @@ export default {
         warning: '#e44c4e',
     }
 }
+
+export default theme;

@@ -3,10 +3,11 @@ import {
 } from './styles';
 import { FaPlus } from 'react-icons/fa'
 
+
 export const SubmitButton = ({ ...rest }) => {
 
     return (
-        <Container {...rest}>
+        <Container onClick={() => { }} type='submit' {...rest} aria-label='Botão Search'>
             <FaPlus size={24} />
         </Container>
     );
