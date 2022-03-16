@@ -4,7 +4,7 @@ import {
 
 import { FaGithub, FaBars, FaTrash } from 'react-icons/fa'
 import { SubmitButton } from '../../components/SubmitButton';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import api from '../../services/api';
 import { Link } from 'react-router-dom';
 
@@ -16,20 +16,44 @@ export const Home = () => {
     const [newRepo, setNewRepo] = useState('')
     const [repositories, setRepositories] = useState<IRepositories[]>([])
     const [loading, setLoading] = useState(false)
+    const [alert, setAlert] = useState(false);
+
+    //DidMount //buscar
+    useEffect(() => {
+        localStorage.setItem('@repos', JSON.stringify(repositories));
+    }, [repositories])
+    useEffect(() => {
+        const repoStorage = localStorage.getItem('@repos');
+        if (repoStorage) {
+            setRepositories(JSON.parse(repoStorage))
+        }
+    }, [])
+
+    //DidUpdate //Salvar Alterações
 
     const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         async function submit() {
             setLoading(true);
             try {
+                if (newRepo === '') {
+                    throw new Error('Voce precisa indicar um repositório');
+                }
                 const response = await api.get(`repos/${newRepo}`)
+
+                const hasRepo = repositories.find(r => r.name === newRepo)
+
+                if (hasRepo) {
+                    throw new Error('Já existe este repositório');
+                }
+
                 const data = {
                     name: response.data.full_name,
                 }
                 setRepositories([...repositories, data])
                 setNewRepo('')
             } catch (error) {
-
+                setAlert(true)
             } finally {
                 setLoading(false)
             }
@@ -50,14 +74,14 @@ export const Home = () => {
                 Meus Repositórios
             </h1>
 
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} error={alert}>
                 <input
                     type="text"
                     placeholder='Adicionar Repositórios'
                     value={newRepo}
-                    onChange={(e) => setNewRepo(e.target.value)}
+                    onChange={(e) => { setNewRepo(e.target.value.trim()); setAlert(false) }}
                 />
-                <SubmitButton loading={loading ? 0 : 1} />
+                <SubmitButton loading={loading ? 1 : 0} />
             </Form>
 
             <section>
