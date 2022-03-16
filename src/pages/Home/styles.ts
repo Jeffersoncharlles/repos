@@ -36,3 +36,34 @@ export const Form = styled.form`
     }
 
 `;
+
+export const List = styled.ul`
+    list-style: none;
+    margin-top: 1.25rem;
+
+    li{
+        padding: 1rem 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        //primeiro ignora do segundo para baixo aplica
+        & + li{
+            border-top: 1px solid ${({ theme }) => theme.color.tertiary};
+        }
+
+        a{
+            color: ${({ theme }) => theme.color.primary};
+        }
+    }
+`;
+
+export const DeleteButton = styled.button.attrs({
+    type: 'button'
+})`
+    padding: 0.5rem;
+    background: transparent;
+    color: ${({ theme }) => theme.color.primary};
+    border: 0;
+`;

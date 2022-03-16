@@ -1,8 +1,23 @@
-import styled from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
+interface IButton {
+    loading: number;
+}
 
-export const Container = styled.button.attrs({
-    type: 'submit'
-})`
+//criando animação do botão
+const animate = keyframes`
+
+from{
+    transform: rotate(0deg);
+}to{
+    transform: rotate(360deg);
+}
+
+`;
+
+export const Container = styled.button.attrs<IButton>(props => ({
+    type: 'submit',
+    disabled: props.loading
+})) <IButton>`
     background:${({ theme }) => theme.color.primary} ;
     border-radius: 4px;
     border: 0;
@@ -20,6 +35,20 @@ export const Container = styled.button.attrs({
 
     &:hover{
         filter: brightness(0.8);
+    }
+
+    &[disabled]{
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    //pego nas props o loading para poder animar
+    ${({ loading }) => loading &&
+        css`
+            svg{
+                animation: ${animate} 2s linear infinite;
+            }
+        `
     }
     
 `;

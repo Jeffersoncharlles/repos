@@ -1,14 +1,17 @@
 import {
     Container,
 } from './styles';
-import { FaPlus } from 'react-icons/fa'
+import { FaPlus, FaSpinner } from 'react-icons/fa'
 
+interface ISubmitButton {
+    loading: number;
+}
 
-export const SubmitButton = ({ ...rest }) => {
+export const SubmitButton = ({ loading, ...rest }: ISubmitButton) => {
 
     return (
-        <Container onClick={() => { }} type='submit' {...rest} aria-label='Botão Search'>
-            <FaPlus size={24} />
+        <Container loading={loading} onClick={() => { }} type='submit' {...rest} aria-label='Botão Search'>
+            {loading ? (<FaSpinner size={24} />) : (<FaPlus size={24} />)}
         </Container>
     );
 }
