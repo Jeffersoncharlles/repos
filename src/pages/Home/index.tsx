@@ -1,7 +1,12 @@
+import {
+    Container,
+} from './styles';
 
 export const Home = () => {
 
     return (
-        <h1>Main</h1>
+        <Container>
+            <h1>Meus Repositórios</h1>
+        </Container>
     );
 }

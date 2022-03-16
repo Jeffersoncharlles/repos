@@ -1,9 +1,14 @@
 import { Routers } from "./routes";
-
+import { ThemeProvider } from 'styled-components';
+import Global from "./styles/global";
+import theme from "./styles/theme";
 
 function App() {
   return (
-    <Routers />
+    <ThemeProvider theme={theme}>
+      <Global />
+      <Routers />
+    </ThemeProvider>
   );
 }
 
