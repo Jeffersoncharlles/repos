@@ -138,7 +138,7 @@ export const PageActions = styled.div`
 
 `;
 
-export const FilterList = styled.div`
+export const FilterList = styled.div<IFilterList>`
     margin: 15px 0;
     button{
         border: 0;
@@ -156,7 +156,16 @@ export const FilterList = styled.div`
         &:disabled{
             cursor: not-allowed;
             opacity: 0.5;
-        }
-    }
+        } 
 
+        &:nth-child(${({ active }) => active + 1}){
+            background: #0071bd;
+            color: #fff;
+        }
+
+    }
 `;
+
+interface IFilterList {
+    active: number;
+}

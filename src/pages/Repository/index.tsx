@@ -41,6 +41,7 @@ export const Repository = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [page, setPage] = useState(1);
     const [filters, setFilters] = useState(filterStates)
+    const [filterPosition, setFilterPosition] = useState(0)
 
     useEffect(() => {
         const load = async () => {
@@ -50,7 +51,7 @@ export const Repository = () => {
                 api.get(`/repos/${repository}`),
                 api.get(`/repos/${repository}/issues`, {
                     params: {
-                        state: 'open',
+                        state: filters[filterPosition].state,
                         per_page: 5
                     }
                 })
@@ -62,7 +63,7 @@ export const Repository = () => {
         }
 
         load()
-    }, [repository])
+    }, [repository, filterPosition, filters])
 
     useEffect(() => {
         const loadPage = async () => {
@@ -78,7 +79,7 @@ export const Repository = () => {
         }
 
         loadPage()
-    }, [page, repository])
+    }, [page, repository, filters])
 
     const handleBack = () => {
         navigation('/');
@@ -88,6 +89,11 @@ export const Repository = () => {
         setPage(action === 'back' ? page - 1 : page + 1)
         //vai diminuir 1 ou aumentar 1
         //se for igual a back
+    }
+
+    const handleFilterIssues = async (active: number) => {
+        setFilterPosition(active)
+
     }
 
     if (isLoading) {
@@ -110,14 +116,14 @@ export const Repository = () => {
             </Owner>
 
             <IssuesList>
-                <FilterList>
+                <FilterList active={filterPosition}>
                     {filters.map((filter, index) => (
                         <button
                             key={index}
                             type="button"
                             aria-label='type issues'
-                            onClick={() => { }}
-                            disabled={filter.active === true}
+                            onClick={() => handleFilterIssues(index)}
+                        // disabled={filter.active === true}
                         >
                             {filter.label}
                         </button>
