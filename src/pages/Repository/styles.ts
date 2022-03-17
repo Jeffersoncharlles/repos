@@ -40,13 +40,73 @@ export const BackButton = styled.button`
     border: 0;
     background: transparent;
     transition: ease-in 0.3s;
-    
+
     svg{
         color:${({ theme }) => theme.color.primary2} ;
     }
 
     &:hover{
         transform: scale(1.5);
+    }
+
+`;
+
+
+export const IssuesList = styled.section`
+
+    ul {
+        list-style: none;
+        margin-top: 2rem;//32px
+        padding-top: 2rem; //32px
+        border-top: 1px solid #eee ;
+
+        li{
+            display: flex;
+            padding: 1rem 0.6rem;
+
+            & + li {
+                margin-top: .7rem;//12px
+            }
+
+            img {
+                width: 2rem;
+                height: 2rem;
+                border-radius: 50%;
+                border: 2px solid ${({ theme }) => theme.color.primary2};
+            }
+
+            div {
+                flex: 1;
+                margin-left: 0.7rem;
+
+                p{
+                    margin-top: .7rem;
+                    font-size:  .7rem;
+                }
+            }
+
+            strong{
+                font-size: 1rem;
+
+                a{
+                    color: ${({ theme }) => theme.color.gray};
+                    transition: .3s;
+
+                    &:hover{
+                        color: ${({ theme }) => theme.color.info};
+                    }
+                }
+
+                span{
+                    background: ${({ theme }) => theme.color.tertiary};
+                    color: ${({ theme }) => theme.color.primary};
+                    border-radius: 4px;
+                    font-size: .7rem;
+                    padding: 5px 7px;
+                    margin-left: .6rem;
+                }
+            }
+        }
     }
 
 `;
