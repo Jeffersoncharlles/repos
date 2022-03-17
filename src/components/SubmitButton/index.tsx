@@ -10,7 +10,7 @@ interface ISubmitButton {
 export const SubmitButton = ({ loading, ...rest }: ISubmitButton) => {
 
     return (
-        <Container loading={loading} onClick={() => { }} type='submit' {...rest} aria-label='Botão Search'>
+        <Container loading={loading} onClick={() => { }} type='submit' {...rest} aria-label='button Search'>
             {loading ? (<FaSpinner size={24} />) : (<FaPlus size={24} />)}
         </Container>
     );

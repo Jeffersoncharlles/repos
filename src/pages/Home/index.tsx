@@ -1,5 +1,5 @@
 import {
-    Container, Form, List, DeleteButton
+    Container, Form, List, DeleteButton,
 } from './styles';
 
 import { FaGithub, FaBars, FaTrash } from 'react-icons/fa'
@@ -104,6 +104,8 @@ export const Home = () => {
                         </li>
                     ))}
                 </List>
+
+
             </section>
         </Container>
     );

@@ -5,8 +5,8 @@ export const Container = styled.main`
     background: ${({ theme }) => theme.color.white};
     box-shadow:  0 0 1.25rem rgba(0,0,0,0.2); //1.25rem e 20px
     border-radius:4px ;
-    padding: 2rem; //32px
-    margin: 5rem auto; // 80px
+    padding: 1.5rem; //32px
+    margin: 2rem auto; // 36px
     
 `;
 
@@ -83,9 +83,8 @@ export const IssuesList = styled.section`
                     margin-top: .7rem;
                     font-size:  .7rem;
                 }
-            }
 
-            strong{
+                strong{
                 font-size: 1rem;
 
                 a{
@@ -106,6 +105,35 @@ export const IssuesList = styled.section`
                     margin-left: .6rem;
                 }
             }
+            }
+
+            
+        }
+    }
+
+`;
+
+
+export const PageActions = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    button{
+        border: 0;
+        background: ${({ theme }) => theme.color.tertiary};
+        color: ${({ theme }) => theme.color.primary};
+        padding: 5px 10px;
+        border-radius: 4px;
+        transition: filter .3s;
+
+        &:hover{
+            filter: brightness(0.9);
+        }
+
+        &:disabled{
+            cursor: not-allowed;
+            opacity: 0.5;
         }
     }
 
