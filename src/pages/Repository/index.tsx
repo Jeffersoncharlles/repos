@@ -105,8 +105,6 @@ export const Repository = () => {
         )
     }
 
-
-
     return (
         <Container>
             <BackButton onClick={() => handleBack()} aria-label='button back'>
@@ -119,7 +117,6 @@ export const Repository = () => {
             </Owner>
 
             <IssuesList>
-
                 <ul>
                     <h1>Issues</h1>
                     {repositoryIssues.map((issues) => (
@@ -139,7 +136,6 @@ export const Repository = () => {
                     ))}
 
                 </ul>
-
                 <PageActions>
                     <button
                         type='button'
@@ -152,7 +148,6 @@ export const Repository = () => {
                     <button type='button' onClick={() => handlePage('next')}>next</button>
                 </PageActions>
             </IssuesList>
-
         </Container>
     );
 }
