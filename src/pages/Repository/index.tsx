@@ -4,9 +4,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Loading } from '../../components/Loading';
 import api from '../../services/api';
 import {
-    Container, Owner, BackButton, IssuesList, PageActions
+    Container, Owner, BackButton, IssuesList, PageActions, FilterList
 } from './styles';
-
 interface IRepositoryDetails {
     name: string;
     description?: string;
@@ -15,7 +14,6 @@ interface IRepositoryDetails {
         avatar_url: string;
     }
 }
-
 interface IRepositoryIssues {
     id: number;
     title: string;
@@ -27,12 +25,13 @@ interface IRepositoryIssues {
     labels: {
         id: number;
         name: string;
-        labels_url?: string;
-        title?: string;
-        updated_at?: string;
-        url?: string;
     }[]
 }
+const filterStates = [
+    { state: 'all', label: 'Todas', active: true },
+    { state: 'open', label: 'Abertas', active: false },
+    { state: 'closed', label: 'Fechadas', active: false }
+]
 
 export const Repository = () => {
     const navigation = useNavigate()
@@ -41,8 +40,7 @@ export const Repository = () => {
     const [repositoryIssues, setRepositoryIssues] = useState<IRepositoryIssues[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [page, setPage] = useState(1);
-
-
+    const [filters, setFilters] = useState(filterStates)
 
     useEffect(() => {
         const load = async () => {
@@ -61,11 +59,6 @@ export const Repository = () => {
             setRepositoryDetail(repositoryData.data)
             setRepositoryIssues(issuesData.data)
             setIsLoading(false);
-
-            //console.log(repositoryData.data)
-            // console.log(issuesData.data)
-
-            // const response = await api.get(`/repo/${repository}`)
         }
 
         load()
@@ -75,7 +68,7 @@ export const Repository = () => {
         const loadPage = async () => {
             const { data } = await api.get(`/repos/${repository}/issues`, {
                 params: {
-                    state: 'open',
+                    state: filters.find(f => f.active)?.state,
                     page,
                     per_page: 5
                 }
@@ -85,7 +78,7 @@ export const Repository = () => {
         }
 
         loadPage()
-    }, [page])
+    }, [page, repository])
 
     const handleBack = () => {
         navigation('/');
@@ -117,6 +110,19 @@ export const Repository = () => {
             </Owner>
 
             <IssuesList>
+                <FilterList>
+                    {filters.map((filter, index) => (
+                        <button
+                            key={index}
+                            type="button"
+                            aria-label='type issues'
+                            onClick={() => { }}
+                            disabled={filter.active === true}
+                        >
+                            {filter.label}
+                        </button>
+                    ))}
+                </FilterList>
                 <ul>
                     <h1>Issues</h1>
                     {repositoryIssues.map((issues) => (

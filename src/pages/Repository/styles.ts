@@ -8,6 +8,7 @@ export const Container = styled.main`
     padding: 1.5rem; //32px
     margin: 2rem auto; // 36px
     
+    
 `;
 
 export const Owner = styled.header`
@@ -35,7 +36,6 @@ export const Owner = styled.header`
     
 `;
 
-
 export const BackButton = styled.button`
     border: 0;
     background: transparent;
@@ -51,14 +51,14 @@ export const BackButton = styled.button`
 
 `;
 
-
 export const IssuesList = styled.section`
-
+    border-top: 1px solid #eee ;
+    margin-top: 2rem;//32px
+        padding-top: 2rem; //32px
     ul {
         list-style: none;
-        margin-top: 2rem;//32px
-        padding-top: 2rem; //32px
-        border-top: 1px solid #eee ;
+        
+        
 
         li{
             display: flex;
@@ -113,7 +113,6 @@ export const IssuesList = styled.section`
 
 `;
 
-
 export const PageActions = styled.div`
     display: flex;
     align-items: center;
@@ -126,6 +125,29 @@ export const PageActions = styled.div`
         padding: 5px 10px;
         border-radius: 4px;
         transition: filter .3s;
+
+        &:hover{
+            filter: brightness(0.9);
+        }
+
+        &:disabled{
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+    }
+
+`;
+
+export const FilterList = styled.div`
+    margin: 15px 0;
+    button{
+        border: 0;
+        background: ${({ theme }) => theme.color.tertiary};
+        color: ${({ theme }) => theme.color.primary};
+        padding: 5px 10px;
+        border-radius: 4px;
+        transition: filter .3s;
+        margin: 0 3px;
 
         &:hover{
             filter: brightness(0.9);
