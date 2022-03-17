@@ -20,16 +20,19 @@ export const Home = () => {
 
     //DidMount //buscar
     useEffect(() => {
-        localStorage.setItem('@repos', JSON.stringify(repositories));
-    }, [repositories])
-    useEffect(() => {
         const repoStorage = localStorage.getItem('@repos');
         if (repoStorage) {
             setRepositories(JSON.parse(repoStorage))
         }
     }, [])
 
+
+
+
     //DidUpdate //Salvar Alterações
+    useEffect(() => {
+        localStorage.setItem('@repos', JSON.stringify(repositories));
+    }, [repositories])
 
     const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -95,7 +98,7 @@ export const Home = () => {
                                 {repo.name}
 
                             </span>
-                            <Link to='/repo'>
+                            <Link to={`/repository/${encodeURIComponent(repo.name)}`}>
                                 <FaBars size={24} />
                             </Link>
                         </li>
