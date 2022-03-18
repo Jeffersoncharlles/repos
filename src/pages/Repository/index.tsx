@@ -86,7 +86,7 @@ export const Repository = () => {
     }, [page, repository, filters])
 
     const handleBack = () => {
-        navigation('/');
+        navigation(-1);
     }
 
     const handlePage = (action: string) => {
