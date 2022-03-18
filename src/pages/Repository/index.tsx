@@ -56,7 +56,6 @@ export const Repository = () => {
                     }
                 })
             ]);
-
             setRepositoryDetail(repositoryData.data)
             setRepositoryIssues(issuesData.data)
             setIsLoading(false);
