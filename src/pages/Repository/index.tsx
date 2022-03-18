@@ -43,6 +43,10 @@ export const Repository = () => {
     const [filters, setFilters] = useState(filterStates)
     const [filterPosition, setFilterPosition] = useState(0)
 
+    if (filterStates ==== '') {
+        setFilters(filterStates)
+    }
+
     useEffect(() => {
         const load = async () => {
 
