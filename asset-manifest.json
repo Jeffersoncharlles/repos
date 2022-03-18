@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/repos/static/js/main.773b49a5.js",
-    "static/js/787.f0ad96c8.chunk.js": "/repos/static/js/787.f0ad96c8.chunk.js",
-    "index.html": "/repos/index.html",
-    "main.773b49a5.js.map": "/repos/static/js/main.773b49a5.js.map",
-    "787.f0ad96c8.chunk.js.map": "/repos/static/js/787.f0ad96c8.chunk.js.map"
+    "main.js": "/static/js/main.a935649f.js",
+    "static/js/787.f0ad96c8.chunk.js": "/static/js/787.f0ad96c8.chunk.js",
+    "index.html": "/index.html",
+    "main.a935649f.js.map": "/static/js/main.a935649f.js.map",
+    "787.f0ad96c8.chunk.js.map": "/static/js/787.f0ad96c8.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.773b49a5.js"
+    "static/js/main.a935649f.js"
   ]
 }
