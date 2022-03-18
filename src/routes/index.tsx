@@ -9,7 +9,7 @@ export const Routers = () => {
         <BrowserRouter>
             <Routes>
                 <Route caseSensitive path='/repos/' element={<Home />} />
-                <Route caseSensitive path='/repos/repository/:repository' element={<Repository />} />
+                <Route caseSensitive path='/repository/:repository' element={<Repository />} />
             </Routes>
         </BrowserRouter>
     )
